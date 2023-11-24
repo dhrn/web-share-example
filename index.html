@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Share Link App</title>
+  </head>
+  <body>
+    <h1>Web Share API Demo</h1>
+
+    <p>Click the button below to share a link:</p>
+
+    <button id="shareButton">Share</button>
+
+    <script>
+      // Check if the Web Share API is supported
+      if (navigator.share) {
+        const shareButton = document.getElementById('shareButton');
+
+        // Define the data to be shared
+        const shareData = {
+          title: 'Web Share API Demo',
+          text: 'Check out this link!',
+          url: 'https://www.example.com',
+        };
+
+        // Add a click event listener to the button
+        shareButton.addEventListener('click', () => {
+          // Use the Web Share API to share the data
+          navigator
+            .share(shareData)
+            .then(() => console.log('Link shared successfully'))
+            .catch((error) => console.error('Error sharing link:', error));
+        });
+      } else {
+        // If Web Share API is not supported, inform the user
+        alert('Web Share API is not supported in your browser.');
+      }
+    </script>
+  </body>
+</html>
